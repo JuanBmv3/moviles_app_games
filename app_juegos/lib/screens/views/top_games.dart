@@ -83,13 +83,27 @@ class _TopGamesScreenState extends State<TopGamesScreen> {
         child: Stack(
           alignment: Alignment.bottomCenter,
           children:[
-            Container(
-              child: FadeInImage(
-                placeholder: AssetImage('assets/loading.gif'), 
-                image: NetworkImage(games.backgroundImage == null ? 'https://1.bp.blogspot.com/-7NqsY6kkUE0/V1CohGECLiI/AAAAAAAAAQw/eYszPqQmy-Q8hqnfROjlk0DFPmoS44-RACLcB/s1600/new%2B%25282%2529.png': games.backgroundImage!),
-                fadeInDuration: Duration(milliseconds: 500),
-                fit: BoxFit.cover,
-              )
+            GestureDetector(
+               onTap: () {
+                Navigator.pushNamed(context, '/detail', arguments: {
+                  'background_image': games.backgroundImage,
+                  'name': games.name,
+                  'id': games.id,
+                  'released': games.released,
+                  'rating': games.rating,
+                  'metacritic': games.metacritic,
+                  
+                  
+                });
+              },
+              child: Container(
+                child: FadeInImage(
+                  placeholder: AssetImage('assets/loading.gif'), 
+                  image: NetworkImage(games.backgroundImage == null ? 'https://1.bp.blogspot.com/-7NqsY6kkUE0/V1CohGECLiI/AAAAAAAAAQw/eYszPqQmy-Q8hqnfROjlk0DFPmoS44-RACLcB/s1600/new%2B%25282%2529.png': games.backgroundImage!),
+                  fadeInDuration: Duration(milliseconds: 500),
+                  fit: BoxFit.cover,
+                )
+              ),
             ),
             Opacity(
               opacity: .8,

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:app_juegos/models/desc_game_model.dart';
 import 'package:app_juegos/models/games_model.dart';
+import 'package:app_juegos/models/images_game_model.dart';
 import 'package:http/http.dart' as http;
 
 class ApiGames{
@@ -21,8 +22,6 @@ class ApiGames{
 
   Future<List<GamesModel>?> getAllTop() async{
     var URL2 = Uri.parse('https://api.rawg.io/api/games?ordering=-metacritic&key=e1eee148a6ad47e2bf39b56e2b47cc07');
-   
-
     final response = await http.get(URL2);
     if(response.statusCode == 200){
       var games = jsonDecode(response.body)['results'] as List;
@@ -42,6 +41,17 @@ class ApiGames{
      return listPopular;
     }else{
       return null;
+    }
+  }
+
+  Future<List<ImagesModel>?> getSS(id) async{
+    var URL2 = Uri.parse('https://api.rawg.io/api/games/${id}/screenshots?key=e1eee148a6ad47e2bf39b56e2b47cc07');
+    final response = await http.get(URL2);
+    if(response.statusCode == 200){
+      var games = jsonDecode(response.body)['results'] as List;
+     List<ImagesModel> listGames = games.map( (game) => ImagesModel.fromMap(game)).toList();
+   
+     return listGames;
     }
   }
       

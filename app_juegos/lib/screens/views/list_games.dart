@@ -88,6 +88,10 @@ class _ListGamesScreenState extends State<ListGamesScreen> {
                           'background_image': game.backgroundImage,
                           'name': game.name,
                           'id': game.id,
+                          'released': game.released,
+                          'rating': game.rating,
+                          'metacritic': game.metacritic,
+                          
                           
                         });
                       },
